@@ -1,6 +1,6 @@
 const url = require('url')
 const {StringDecoder} = require('string_decoder')
-const routes = require('../routes')
+const route = require('../routes')
 const { notFoundHandler } = require('../handlers/routeHandlers/notFoundHandler')
 
 const handler = {}
@@ -26,7 +26,7 @@ handler.handleReqRes = (req, res) => {
     const decoder = new StringDecoder('utf-8')
     let realData = ''
 
-    const chosenHandler = routes[trimedPath] ? routes[trimedPath] : notFoundHandler
+    const chosenHandler = route[trimedPath] ? route[trimedPath] : notFoundHandler
 
     chosenHandler(requestProperties, (statusCode, payload) => {
         statusCode = typeof statusCode  === 'number' ? statusCode : 500
@@ -52,3 +52,5 @@ handler.handleReqRes = (req, res) => {
 }
 
 module.exports = handler
+
+
