@@ -1,6 +1,6 @@
 const url = require('url')
-const {StringDecoder} = require('string_decoder')
-const route = require('../routes')
+const { StringDecoder } = require('string_decoder')
+const routes = require('../routes')
 const { notFoundHandler } = require('../handlers/routeHandlers/notFoundHandler')
 
 const handler = {}
@@ -26,17 +26,9 @@ handler.handleReqRes = (req, res) => {
     const decoder = new StringDecoder('utf-8')
     let realData = ''
 
-    const chosenHandler = route[trimedPath] ? route[trimedPath] : notFoundHandler
+    const chosenHandler = routes[trimedPath] ? routes[trimedPath] : notFoundHandler
 
-    chosenHandler(requestProperties, (statusCode, payload) => {
-        statusCode = typeof statusCode  === 'number' ? statusCode : 500
-        payload = typeof payload === 'object' ? payload : {}
 
-        const payloadString = JSON.stringify(payload)
-
-        res.writeHead(statusCode)
-        res.end(payloadString)
-    })
 
     req.on('data', (buffer) => {
         realData += decoder.write(buffer)
@@ -44,13 +36,18 @@ handler.handleReqRes = (req, res) => {
 
     req.on('end', () => {
         realData += decoder.end()
-        console.log(realData)
+        chosenHandler(requestProperties, (statusCode, payload) => {
+            statusCode = typeof statusCode === 'number' ? statusCode : 500
+            payload = typeof payload === 'object' ? payload : {}
 
-        res.end('hello world')
+            const payloadString = JSON.stringify(payload)
+
+            res.writeHead(statusCode)
+            res.end(payloadString)
+        })
     })
 
 }
 
 module.exports = handler
-
 
