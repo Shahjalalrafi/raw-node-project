@@ -25,4 +25,18 @@ utilities.hash = (str) => {
     }
 }
 
+utilities.createRandomString = (strlength) => {
+    let length = strlength
+    length = typeof length === 'number' && length > 0 ? strlength : false
+    if(length) {
+        let possibleCharacter = 'abcdefghijklmnopqrstuvwxyz1234567890'
+        let outPut = ''
+        for(let i = 0; i<= length; i++) {
+            let randomCharacter = possibleCharacter.charAt(Math.floor(Math.random() * possibleCharacter.length))
+            outPut += randomCharacter
+        }
+        return outPut
+    }
+}
+
 module.exports = utilities

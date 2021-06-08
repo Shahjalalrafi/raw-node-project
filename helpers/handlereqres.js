@@ -13,7 +13,7 @@ handler.handleReqRes = (req, res) => {
     const trimedPath = path.replace(/^\/+|\/+$/g, '')
     const method = req.method.toLowerCase()
     const queryStringObject = parseUrl.query
-    const headObject = req.headers
+    const headerObject = req.headers
 
     const requestProperties = {
         parseUrl,
@@ -21,7 +21,7 @@ handler.handleReqRes = (req, res) => {
         trimedPath,
         method,
         queryStringObject,
-        headObject
+        headerObject
     }
 
     const decoder = new StringDecoder('utf-8')
@@ -51,7 +51,6 @@ handler.handleReqRes = (req, res) => {
             res.end(payloadString)
         })
     })
-
 }
 
 module.exports = handler
