@@ -114,7 +114,7 @@ handler._user.put = (requestProperties, callBack) => {
     if (phone) {
         if (firstName || lastName || phone) {
             // verify token
-            let token = typeof requestProperties.headerObject === 'string' ? requestProperties.headerObject : false
+            let token = typeof requestProperties.headerObject.token === 'string' ? requestProperties.headerObject.token : false
 
             tokenHandler._token.verify(token, phone, (tokenId) => {
                 if (!tokenId) {
