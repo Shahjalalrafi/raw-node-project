@@ -1,8 +1,6 @@
 // Dependencies
 const http = require('http');
 const { handleReqRes } = require('./helpers/handleReqRes');
-// const {environments} = require('./helpers/environment')
-const data = require('./lib/data')
 
 // app Object - module scafolding
 const app = {}
@@ -12,22 +10,6 @@ app.config = {
     port: 3000
 }
 
-
-// data.create('test', 'newFile', {name: 'Bangladesh', language: 'bangla'}, (err) => {
-//     console.log('error was', err)
-// })
-
-// data.read('test', 'newFile', (err, data) => {
-//     console.log(err, data)
-// } )
-
-// data.update('test', 'newFile', {name: 'England', language: 'English'}, (err) => {
-//     console.log(err)
-// })
-
-// data.delete('test', 'newFile', (err) => {
-//     console.log(err)
-// })
 
 
 // create server
@@ -44,3 +26,6 @@ app.handleReqRes = handleReqRes;
 // start the server
 app.createServer();
 
+// phone= +1500555006
+// accountsid= "ACb32d411ad7e886aac54c665d25e5c5d"
+// authToken= "9455e3eb3109edc12e3d8c92768f7a67"
